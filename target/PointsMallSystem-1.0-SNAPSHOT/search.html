@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Products</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            color: #333;
+        }
+        form {
+            width: 50%;
+            margin: 20px auto;
+            text-align: center;
+        }
+        input[type="text"] {
+            width: 70%;
+            padding: 8px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        button {
+            padding: 8px 16px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<h1>搜索商品</h1>
+<form action="searchResults.jsp" method="get">
+    <input type="text" name="keyword" placeholder="输入搜索关键词">
+    <button type="submit">搜索</button>
+</form>
+</body>
+</html>

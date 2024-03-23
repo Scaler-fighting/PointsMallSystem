@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 2px rgba(0,0,0,0.3);
+        }
+        p {
+            font-weight: 600;
+            text-align: center;
+            color: #666;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        li {
+            margin: 15px;
+            text-align: center;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            padding: 20px; /* 增加操作的内边距 */
+            border-radius: 10px; /* 增加操作的圆角 */
+            margin-bottom: 15px;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #0056b3;
+        }
+
+        .break-line {
+            flex-basis: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .break-line {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+<h1>欢迎来到积分商城</h1>
+<p>请选择您的操作：</p>
+<ul>
+    <li><a href="register.jsp?type=customer">客户端注册</a></li>
+    <li><a href="register.jsp?type=merchant">商户端注册</a></li>
+    <span class="break-line"></span>
+    <li><a href="login.jsp?type=customer">客户端登录</a></li>
+    <li><a href="login.jsp?type=merchant">商户端登录</a></li>
+    <span class="break-line"></span>
+    <li><a href="browse.jsp">浏览商品</a></li>
+    <li><a href="search.html">搜索商品</a></li>
+</ul>
+</body>
+</html>
