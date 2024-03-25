@@ -17,39 +17,24 @@ import java.util.List;
 @WebServlet("/products")
 public class BrowseProductsServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException{
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             String sortBy = request.getParameter("sortBy");
             String sortOrder = request.getParameter("sortOrder");
-            int currentPage = 1; // 默认值为1
-            String pageParam = request.getParameter("page");
-            if (pageParam != null && !pageParam.isEmpty()) {
-                try {
-                    currentPage = Integer.parseInt(pageParam);
-                } catch (NumberFormatException e) {
-                    // 处理转换异常，可以记录日志或者采取其他适当的处理方式
-                    e.printStackTrace();
-                }
-            }
 
+            int pageSize = 25;
+            int currentPage = request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1;
+            List<Product> allProdouts=SelectAllProductsDao.getProducts();
+            // 获取当前页需要显示的产品数据，并根据用户选择的排序方式和排序顺序进行排序
+            List<Product> sortedProducts = ProductService.getProductSorted(sortBy, sortOrder);
 
-            int pageSize = 25; // 设置默认值为10或者其他合适的值
-            String pageSizeParam = request.getParameter("pageSize");
-            if (pageSizeParam != null && !pageSizeParam.isEmpty()) {
-                try {
-                    pageSize = Integer.parseInt(pageSizeParam);
-                } catch (NumberFormatException e) {
-                    // 处理转换异常，可以记录日志或者采取其他适当的处理方式
-                    e.printStackTrace();
-                }
-            }
-
-            List<Product> products=ProductService.getProductsByPage(sortBy,sortOrder,currentPage,pageSize);
-
-            request.setAttribute("products", products); // 将排序后的产品列表设置为请求属性
-            request.getRequestDispatcher("/browse.jsp").forward(request, response); // 转发请求到 browse.jsp 页面
-        } catch (SQLException | ClassNotFoundException | ServletException | IOException|NullPointerException e) {
+            request.setAttribute("products", sortedProducts); // 设置当前页的产品列表到请求属性中
+            request.setAttribute("sortBy",sortBy);
+            request.setAttribute("sortOrder",sortOrder);
+            request.getRequestDispatcher("/sortedProducts.jsp").forward(request, response); // 转发至浏览产品页面
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 }
+

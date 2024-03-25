@@ -1,6 +1,8 @@
 package com.pointsmallsystem.www.servlet;
 
 import com.pointsmallsystem.www.dao.SelectByNamePasswordDao;
+import com.pointsmallsystem.www.po.Customer;
+import com.pointsmallsystem.www.po.Merchant;
 import com.pointsmallsystem.www.po.User;
 
 import javax.servlet.ServletException;
@@ -27,14 +29,16 @@ public class LoginServlet extends HttpServlet {
 
         try {
             if ("merchant".equals(type)) {
-                List<User> merchants = SelectByNamePasswordDao.SelectMerchants(userName, password);
+                Merchant merchant = SelectByNamePasswordDao.SelectMerchants(userName, password);
                 HttpSession session = request.getSession();
-                if (merchants.isEmpty()||merchants.size()==0) {
+                if (merchant==null) {
                     request.setAttribute("error", "Invalid username or password");
                     request.getRequestDispatcher("login.jsp?type=merchant").forward(request, response);
                 } else {
                     session.setAttribute("username", userName);
                     //response.sendRedirect("Merchant.jsp");
+
+                    session.setAttribute("merchant",merchant);
                     response.setContentType("text/html;charset=utf-8");
                     response.getWriter().println("<script>alert('登录成功');</script>");
                     response.setHeader("refresh", "1;url=Merchant.jsp" +
@@ -42,14 +46,16 @@ public class LoginServlet extends HttpServlet {
                 }
             } else {
                 // 调用查询客户用户信息的方法
-                List<User> customers = SelectByNamePasswordDao.SelectCustomers(userName, password);
+                Customer customer = SelectByNamePasswordDao.SelectCustomers(userName, password);
                 HttpSession session = request.getSession();
-                if (customers.isEmpty()||customers.size()==0) {
+                if (customer==null) {
                     request.setAttribute("error", "Invalid username or password");
                     request.getRequestDispatcher("login.jsp?type=customer").forward(request, response);
                 } else {
                     session.setAttribute("username", userName);
                     //response.sendRedirect("Customer.jsp");
+
+                    session.setAttribute("customer",customer);
                     response.setContentType("text/html;charset=utf-8");
                     response.getWriter().println("<script>alert('登录成功');</script>");
                     response.setHeader("refresh", "1;url=Customer.jsp" +

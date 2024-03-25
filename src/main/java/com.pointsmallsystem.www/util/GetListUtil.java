@@ -1,5 +1,7 @@
 package com.pointsmallsystem.www.util;
 
+import com.pointsmallsystem.www.po.Customer;
+import com.pointsmallsystem.www.po.Merchant;
 import com.pointsmallsystem.www.po.Product;
 import com.pointsmallsystem.www.po.User;
 
@@ -26,15 +28,17 @@ public class GetListUtil {
         }
         return products;
     }
-    public static List<User> getCustomers(ResultSet rs) throws SQLException {
-        List<User> customers=new ArrayList<>();
+    public static List<Customer> getCustomers(ResultSet rs) throws SQLException {
+        List<Customer> customers=new ArrayList<>();
         while (rs.next()){
-            User customer=new User();
+            Customer customer=new Customer();
             String gender=rs.getString("gender");
             String email=rs.getString("email");
             String phone=rs.getString("phone");
-            customer.setName(rs.getString("username"));
+            customer.setName(rs.getString("user_name"));
             customer.setPassword(rs.getString("password"));
+            customer.setUserId(rs.getInt("user_id"));
+            customer.setPoints(rs.getInt("points"));
             customer.setGender(gender);
             customer.setPhone(phone);
             customer.setEmail(email);
@@ -43,19 +47,19 @@ public class GetListUtil {
         return customers;
     }
 
-    public static List<User> getMerchants(ResultSet rs) throws SQLException {
-        List<User> merchants=new ArrayList<>();
+    public static List<Merchant> getMerchants(ResultSet rs) throws SQLException {
+        List<Merchant> merchants=new ArrayList<>();
         while (rs.next()){
-            User customer=new User();
+            Merchant merchant=new Merchant();
             String gender=rs.getString("gender");
             String email=rs.getString("email");
             String phone=rs.getString("phone");
-            customer.setName(rs.getString("username"));
-            customer.setPassword(rs.getString("password"));
-            customer.setGender(gender);
-            customer.setPhone(phone);
-            customer.setEmail(email);
-            merchants.add(customer);
+            merchant.setName(rs.getString("user_name"));
+            merchant.setPassword(rs.getString("password"));
+            merchant.setGender(gender);
+            merchant.setPhone(phone);
+            merchant.setEmail(email);
+            merchants.add(merchant);
         }
         return merchants;
     }

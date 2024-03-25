@@ -11,6 +11,14 @@ import java.util.Comparator;
 import java.util.List;
 
 public class ProductService {
+    public static List<Product> getProductSorted(String sortBy,String sortOrder) throws SQLException, ClassNotFoundException {
+        List<Product> products;
+        if("sales".equals(sortBy)){
+            return  products=getProductSortedBySales(sortOrder);
+        }else{
+            return  products=getProductSortedByDate(sortOrder);
+        }
+    }
     public static List<Product> getProductSortedBySales(String sortOrder) throws SQLException, ClassNotFoundException {
         List<Product> products= SelectAllProductsDao.getProducts();
         if("asc".equals(sortOrder)){
@@ -37,10 +45,11 @@ public class ProductService {
         return products;
     }
 
-    public static List<Product> getProductsByPage(String sortBy,String sortOrder,int currentPage, int pageSize) throws SQLException, ClassNotFoundException {
+    public static List<Product> getProductsByPage(List<Product> allProducts,int currentPage, int pageSize) throws SQLException, ClassNotFoundException {
 
-        List<Product> allProducts = SelectAllProductsDao.getProducts(); // 获取所有产品列表
-        if(allProducts!=null&&!allProducts.isEmpty()) {
+        /*List<Product> allProducts = SelectAllProductsDao.getProducts(); // 获取所有产品列表*/
+
+        /*if(allProducts!=null&&!allProducts.isEmpty()) {
             if ("sales".equals(sortBy)) {
                 if ("asc".equals(sortOrder)) {
                     allProducts = ProductService.getProductSortedBySales("asc"); // 按销量升序排序
@@ -56,16 +65,20 @@ public class ProductService {
             }
         }else{
             allProducts=new ArrayList<>();
-        }
+        }*/
         List<Product> products=new ArrayList<>();
 
-        int startIndex=(currentPage-1)*pageSize;
-        int endIndex=Math.min(startIndex+pageSize,allProducts.size());
+        if (!allProducts.isEmpty()&&allProducts.size()==0) {
+            int startIndex=(currentPage-1)*pageSize;
+            int endIndex=Math.min(startIndex+pageSize,allProducts.size());
 
-        for(int i=startIndex;i<endIndex;i++){
-            products.add(allProducts.get(i));
+            for(int i=startIndex;i<endIndex;i++){
+                products.add(allProducts.get(i));
+            }
+            return products;
+        } else {
+            return null;
         }
-        return products;
     }
 }
 

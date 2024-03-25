@@ -47,6 +47,17 @@
     </style>
 </head>
 <body>
+<body>
+<div class="sidebar">
+    <h3>导航</h3>
+    <ul>
+        <li><a href="register.jsp?type=customer">客户端注册</a></li>
+        <li><a href="register.jsp?type=merchant">商户端注册</a></li>
+        <li><a href="login.jsp?type=customer">客户端登录</a></li>
+        <li><a href="login.jsp?type=merchant">商户端登录</a></li>
+        <li><a href="search.html">搜索</a></li>
+    </ul>
+</div>
 <h1>产品列表</h1>
 <div class="products-container">
     <% List<Product> products= SelectProductByKewordsDao.searchProducts(request.getParameter("keyword"));

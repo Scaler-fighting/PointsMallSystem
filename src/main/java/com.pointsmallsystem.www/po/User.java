@@ -8,17 +8,16 @@ public class User {
     private String phone;
     private String email;
 
-    private String address;
+
 
     public User(){}
 
-    public User( String name, String password, String gender, String phone, String email, String address) {
+    public User( String name, String password, String gender, String phone, String email) {
         this.name = name;
         this.password = password;
         this.gender = gender;
         this.phone = phone;
         this.email = email;
-        this.address = address;
     }
 
 
@@ -70,13 +69,7 @@ public class User {
         this.email = email;
     }
 
-    public String getAddress() {
-        return address;
-    }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
 
     @Override
     public String toString() {
@@ -87,7 +80,6 @@ public class User {
                 ", gender='" + gender + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
-                ", address='" + address + '\'' +
                 '}';
     }
 }
