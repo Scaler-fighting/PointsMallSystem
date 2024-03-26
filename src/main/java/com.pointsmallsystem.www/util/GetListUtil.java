@@ -1,5 +1,6 @@
 package com.pointsmallsystem.www.util;
 
+import com.pointsmallsystem.www.dao.AddressDao;
 import com.pointsmallsystem.www.po.Customer;
 import com.pointsmallsystem.www.po.Merchant;
 import com.pointsmallsystem.www.po.Product;
@@ -28,7 +29,7 @@ public class GetListUtil {
         }
         return products;
     }
-    public static List<Customer> getCustomers(ResultSet rs) throws SQLException {
+    public static List<Customer> getCustomers(ResultSet rs) throws SQLException, ClassNotFoundException {
         List<Customer> customers=new ArrayList<>();
         while (rs.next()){
             Customer customer=new Customer();
@@ -42,6 +43,10 @@ public class GetListUtil {
             customer.setGender(gender);
             customer.setPhone(phone);
             customer.setEmail(email);
+            customer.setAddressList(AddressDao.selectAddress(customer));
+
+
+
             customers.add(customer);
         }
         return customers;
@@ -63,4 +68,14 @@ public class GetListUtil {
         }
         return merchants;
     }
+
+    public static List<String> getAddresses(ResultSet rs) throws SQLException {
+        List<String> addresses=new ArrayList<>();
+        while(rs.next()){
+            String address=rs.getString("address");
+            addresses.add(address);
+        }
+        return addresses;
+    }
+
 }

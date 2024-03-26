@@ -24,10 +24,12 @@ public class RechargePointsServlet extends HttpServlet {
             response.getWriter().write("错误：请输入有效的充值积分数。");
             return;
         }
-
+        int newPoints=0;
         int rechargePointValue = Integer.parseInt(rechargePoints);
+
+        newPoints=newPoints+rechargePointValue;
         try {
-            UpdatePointsDao.updatePoints(customer, rechargePointValue);
+            UpdatePointsDao.updatePoints(customer, newPoints);
             response.setContentType("text/html;charset=utf-8");
             response.getWriter().println("<script>alert('您已成功充值了 " + rechargePointValue + " 积分');</script>");
             response.setHeader("refresh", "1;url=Customer.jsp" +

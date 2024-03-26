@@ -95,7 +95,7 @@
         <h3>导航</h3>
         <ul>
             <li><a href="ModifyPersonInfo.jsp">个人信息修改</a></li>
-            <li><a href="#">收货地址管理</a></li>
+            <li><a href="address.jsp">收货地址管理</a></li>
             <li><a href="RechargePoints.jsp">积分充值</a></li>
             <li><a href="#">购物车</a></li>
         </ul>

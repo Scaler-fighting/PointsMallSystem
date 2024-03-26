@@ -104,6 +104,10 @@
         <p>价格: <%= product.getPrice() %></p>
         <p>销量：<%=product.getSales()%></p>
         <p>发布时间：<%=product.getPublishDate()%></p>
+        <form action="addToCart" method="post">
+            <input type="hidden" name="productId" value="<%= product.getProductId() %>">
+            <button type="submit">加入购物车</button>
+        </form>
     </div>
     <%
         }}
