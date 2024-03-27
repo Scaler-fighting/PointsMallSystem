@@ -1,6 +1,6 @@
 package com.pointsmallsystem.www.servlet;
 
-import com.pointsmallsystem.www.dao.SelectAllProductsDao;
+import com.pointsmallsystem.www.dao.ProductDao;
 import com.pointsmallsystem.www.po.Product;
 import com.pointsmallsystem.www.service.ProductService;
 
@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/products")
@@ -24,7 +22,7 @@ public class BrowseProductsServlet extends HttpServlet {
 
             int pageSize = 25;
             int currentPage = request.getParameter("page") != null ? Integer.parseInt(request.getParameter("page")) : 1;
-            List<Product> allProdouts=SelectAllProductsDao.getProducts();
+            List<Product> allProdouts= ProductDao.getProducts();
             // 获取当前页需要显示的产品数据，并根据用户选择的排序方式和排序顺序进行排序
             List<Product> sortedProducts = ProductService.getProductSorted(sortBy, sortOrder);
 

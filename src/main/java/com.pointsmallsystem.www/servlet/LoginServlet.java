@@ -54,7 +54,8 @@ public class LoginServlet extends HttpServlet {
                 } else {
                     session.setAttribute("username", userName);
                     //response.sendRedirect("Customer.jsp");
-
+                    boolean isUserLoggedIn=true;
+                    session.setAttribute("isUserLoggedIn",isUserLoggedIn);
                     session.setAttribute("customer",customer);
                     response.setContentType("text/html;charset=utf-8");
                     response.getWriter().println("<script>alert('登录成功');</script>");

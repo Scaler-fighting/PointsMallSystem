@@ -175,8 +175,7 @@
                     <button type="submit">更新购买数量</button>
                 </form>
                 <form action="addToOrder" method="post">
-                    <input type="hidden" name="product" value="<%= product %>">
-                    <input type="hidden" name="addToOrder" value="true"> <!-- 新增的隐藏字段 -->
+                    <input type="hidden" name="productId" value="<%= product.getProductId() %>">
                     <button type="submit">添加到订单</button>
                 </form>
                 <!-- Add delete button -->
@@ -200,7 +199,6 @@
         </form>
         <!-- Add button to checkout order -->
         <form action="CheckoutOrder.jsp" method="post">
-            <input type="hidden" name="selectedProducts" value="true"> <!-- 新增的隐藏字段 -->
             <button type="submit">结算订单</button>
         </form>
     </div>

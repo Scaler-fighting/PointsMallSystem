@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.pointsmallsystem.www.po.Product" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.pointsmallsystem.www.dao.SelectProductByKewordsDao" %>
+<%@ page import="com.pointsmallsystem.www.dao.ProductDao" %>
 <html>
 <head>
     <title>Search Results</title>
@@ -11,6 +11,58 @@
             margin: 0;
             padding: 0;
             background-color: #f9f9f9;
+        }
+        .sidebar {
+            width: 100px;
+            background-color: #666666;
+            color: #FFFFFF;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: -100px; /* 初始将导航栏隐藏在左侧 */
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: left 0.3s; /* 使用left属性实现弹出效果 */
+            z-index: 1;
+        }
+
+        .sidebar:hover {
+            left: 0; /* 鼠标悬停时将导航栏展开到左侧 */
+        }
+        sidebar ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 10px 0;
+            color: #FFFFFF;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #FFD700;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        a {
+            text-decoration: none;
+            color: #FFFFFF;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #FFFFFF;
         }
 
         h1 {
@@ -47,7 +99,7 @@
     </style>
 </head>
 <body>
-<body>
+
 <div class="sidebar">
     <h3>导航</h3>
     <ul>
@@ -60,7 +112,7 @@
 </div>
 <h1>产品列表</h1>
 <div class="products-container">
-    <% List<Product> products= SelectProductByKewordsDao.searchProducts(request.getParameter("keyword"));
+    <% List<Product> products= ProductDao.searchProducts(request.getParameter("keyword"));
         for (Product product : products) { %>
     <div class="product">
         <h2><%= product.getProductName() %></h2>

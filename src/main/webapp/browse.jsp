@@ -1,9 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.pointsmallsystem.www.po.Product" %>
-<%@ page import="com.pointsmallsystem.www.dao.SelectAllProductsDao" %>
 
 <%@ page import="com.pointsmallsystem.www.service.ProductService" %>
+<%@ page import="com.pointsmallsystem.www.dao.ProductDao" %>
 
 <html>
 <head>
@@ -86,7 +86,8 @@
 
 <div class="container">
     <%
-        List<Product> products = SelectAllProductsDao.getProducts();
+
+        List<Product> products = ProductDao.getProducts();
         /*String sortBy=request.getParameter("sortBy");
         String sortOrder=request.getParameter("sortOrder");
         int pageSize = 25;
@@ -106,6 +107,7 @@
         <p>发布时间：<%=product.getPublishDate()%></p>
         <form action="addToCart" method="post">
             <input type="hidden" name="productId" value="<%= product.getProductId() %>">
+            <input type="hidden" name="quantity" value="<%=product.getQuantity()%>">
             <button type="submit">加入购物车</button>
         </form>
     </div>

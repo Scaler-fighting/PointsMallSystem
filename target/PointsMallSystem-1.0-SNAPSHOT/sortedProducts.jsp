@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.pointsmallsystem.www.po.Product" %>
-<%@ page import="com.pointsmallsystem.www.dao.SelectAllProductsDao" %>
 <%@ page import="com.pointsmallsystem.www.service.ProductService" %>
 
 <html>

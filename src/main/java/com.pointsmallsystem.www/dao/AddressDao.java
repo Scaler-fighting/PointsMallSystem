@@ -12,7 +12,9 @@ import java.util.List;
 
 public class AddressDao {
     public static List<String> selectAddress(Customer customer ) throws SQLException, ClassNotFoundException {
+        //连接数据库
         Connection conn=DatabaseConnection.getConnection();
+        //定义查询地址的sql语句
         String sql="Select address from address where user_id='"+customer.getUserId()+"'";
         PreparedStatement pstmt=conn.prepareStatement(sql);
         ResultSet rs=pstmt.executeQuery();
