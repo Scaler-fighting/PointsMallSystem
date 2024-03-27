@@ -1,6 +1,6 @@
 package com.pointsmallsystem.www.service;
 
-import com.pointsmallsystem.www.dao.SelectAllProductsDao;
+import com.pointsmallsystem.www.dao.ProductDao;
 import com.pointsmallsystem.www.po.Product;
 import com.pointsmallsystem.www.util.DateUtil;
 
@@ -20,7 +20,7 @@ public class ProductService {
         }
     }
     public static List<Product> getProductSortedBySales(String sortOrder) throws SQLException, ClassNotFoundException {
-        List<Product> products= SelectAllProductsDao.getProducts();
+        List<Product> products= ProductDao.getProducts();
         if("asc".equals(sortOrder)){
             products.sort(Comparator.comparingInt(Product::getSales));
         }else{
@@ -29,7 +29,7 @@ public class ProductService {
         return products;
     }
     public static List<Product> getProductSortedByDate(String sortOrder) throws SQLException, ClassNotFoundException {
-        List<Product> products=SelectAllProductsDao.getProducts();
+        List<Product> products=ProductDao.getProducts();
         Comparator<Product> comparator=Comparator.comparing(product-> {
             try {
                 return DateUtil.converStringToDate(product.getPublishDate());

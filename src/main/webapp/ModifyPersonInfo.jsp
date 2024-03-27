@@ -160,8 +160,24 @@
                     <label for="phone">手机号：</label>
                     <input type="text" id="phone" name="phone" value="${sessionScope.customer.phone}"><br>
                     <input type="hidden" id="userId" name="userId" value="${sessionScope.customer.userId}">
+                    <input type="hidden" id="customer" name="customer" value="customer">
                 </c:if>
-
+                <c:if test="${not empty sessionScope.merchant}">
+                    <label for="username">用户名：</label>
+                    <input type="text" id="username" name="username" value="${sessionScope.merchant.name}"><br>
+                    <label for="gender">性别：</label>
+                    <input type="text" id="gender" name="gender" value="${sessionScope.merchant.gender}"><br>
+                    <label for="password">密码：</label>
+                    <input type="password" id="password" name="password" value="${sessionScope.merchant.password}"><br>
+                    <label for="email">邮箱：</label>
+                    <input type="text" id="email" name="email" value="${sessionScope.merchant.email}"><br>
+                    <label for="phone">手机号：</label>
+                    <input type="text" id="phone" name="phone" value="${sessionScope.merchant.phone}"><br>
+                    <label for="address">地址：</label>
+                    <input type="text" id="address" name="address" value="${sessionScope.merchant.address}"><br>
+                    <input type="hidden" id="merchant" name="merchant" value="merchant">
+                    <input type="hidden" id="userId" name="userId" value="${sessionScope.merchant.userId}">
+                </c:if>
 
 
                 <input type="submit" value="保存更改">

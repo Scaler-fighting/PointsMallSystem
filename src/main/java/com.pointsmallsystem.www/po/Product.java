@@ -9,6 +9,15 @@ public class Product {
     private int categoryId;
     private int sales;
     private String publishDate;
+    private int quantity;
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     public Product(){}
 

@@ -1,6 +1,7 @@
 package com.pointsmallsystem.www.util;
 
 import com.pointsmallsystem.www.dao.AddressDao;
+import com.pointsmallsystem.www.dao.ShoppingCartDao;
 import com.pointsmallsystem.www.po.Customer;
 import com.pointsmallsystem.www.po.Merchant;
 import com.pointsmallsystem.www.po.Product;
@@ -44,7 +45,7 @@ public class GetListUtil {
             customer.setPhone(phone);
             customer.setEmail(email);
             customer.setAddressList(AddressDao.selectAddress(customer));
-
+            customer.setShoppingCart(ShoppingCartDao.selectShoppingCart(customer));
 
 
             customers.add(customer);
@@ -60,7 +61,9 @@ public class GetListUtil {
             String email=rs.getString("email");
             String phone=rs.getString("phone");
             merchant.setName(rs.getString("user_name"));
+            merchant.setUserId(rs.getInt("user_id"));
             merchant.setPassword(rs.getString("password"));
+            merchant.setAddress(rs.getString("address"));
             merchant.setGender(gender);
             merchant.setPhone(phone);
             merchant.setEmail(email);

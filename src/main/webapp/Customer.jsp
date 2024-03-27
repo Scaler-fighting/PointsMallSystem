@@ -84,27 +84,6 @@
             border: 2px solid #333;
             border-radius: 5px;
         }
-        .modal {
-            display: none; /* 初始隐藏模态框 */
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4);
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 10% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 400px;
-        }
-
 
 
     </style>
@@ -117,7 +96,7 @@
         <li><a href="ModifyPersonInfo.jsp">个人信息修改</a></li>
         <li><a href="address.jsp">收货地址管理</a></li>
         <li><a href="RechargePoints.jsp">积分充值</a></li>
-        <li><a href="#">购物车</a></li>
+        <li><a href="ShoppingCart.jsp">购物车</a></li>
     </ul>
 </div>
 <div class="content" id="productContent">

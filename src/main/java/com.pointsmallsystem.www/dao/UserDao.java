@@ -71,7 +71,30 @@ public class UserDao {
             if(conn!=null)conn.close();
             return success;
 
+        }
+        public static boolean updateMerchant(Merchant merchant) throws SQLException, ClassNotFoundException {
+            Connection conn=DatabaseConnection.getConnection();
+            String sql="Update merchants set user_name=?,gender=?,password=?,email=?,phone=?,address=? where user_id=?";
+            PreparedStatement pstmt=conn.prepareStatement(sql);
+            pstmt.setString(1,merchant.getName());
+            pstmt.setString(2,merchant.getGender());
+            pstmt.setString(3,merchant.getPassword());
+            pstmt.setString(4,merchant.getEmail());
+            pstmt.setString(5,merchant.getPhone());
+            pstmt.setString(6,merchant.getAddress());
+            pstmt.setInt(7,merchant.getUserId());
+
+            boolean flag=false;
+            int rowAffected=pstmt.executeUpdate();
+            if(rowAffected>0){
+                flag=true;
+            }
+            pstmt.close();
+            conn.close();
+            return flag;
+        }
 
 
-}
+
+
 }

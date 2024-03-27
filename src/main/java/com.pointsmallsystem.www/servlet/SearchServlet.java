@@ -1,7 +1,7 @@
 package com.pointsmallsystem.www.servlet;
 
+import com.pointsmallsystem.www.dao.ProductDao;
 import com.pointsmallsystem.www.po.Product;
-import com.pointsmallsystem.www.dao.SelectProductByKewordsDao;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +16,7 @@ public class SearchServlet extends HttpServlet {
         String keyword = request.getParameter("keyword");
         List<Product> products;
         try {
-            products = SelectProductByKewordsDao.searchProducts(keyword);
+            products = ProductDao.searchProducts(keyword);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
